@@ -1586,8 +1586,8 @@ names = [1, 2, 3, 4];
 | Assignment        | Once           | Once              |
 | Time              | Runtime        | Compile time      |
 | Initialization    | Can be later   | Must be immediate |
-| Reassign variable | ❌              | ❌              |
-| Modify object     | ✅              | ❌              |
+| Reassign variable | ❌             | ❌               |
+| Modify object     | ✅             | ❌               |
 | Used for          | Runtime values | Fixed constants   |
 
 ---
@@ -1609,5 +1609,280 @@ names = [1, 2, 3, 4];
 
 ---
 
+# Conditional Programming in Dart
 
+## What is Conditional Programming?
 
+Conditional programming means **controlling the flow of execution based on conditions**.
+
+In simple words:
+> When we want to **navigate or divert code execution according to a condition**, we use conditional statements.
+
+### Real-life Examples
+- Login page → check username & password  
+- Dialog box → show success or error  
+- Navigation → open next screen only if condition is true  
+
+All these depend on **conditions returning true or false**.
+
+---
+
+## Types of Conditional Statements in Dart
+
+Dart supports the following conditional constructs:
+
+1. `if`
+2. `if – else`
+3. `if – else if – else`
+4. Nested `if`
+5. Logical operators (`&&`, `||`, `!`)
+
+We’ll go step by step.
+
+---
+
+## 1️⃣ `if` Statement
+
+### Syntax
+```dart
+if (condition) {
+  // code executes if condition is true
+}
+````
+
+### Example
+
+```dart
+void main() {
+  int age = 20;
+
+  if (age >= 18) {
+    print("Eligible to vote");
+  }
+}
+```
+
+### Explanation
+
+* Condition returns a **boolean**
+* If condition is `true`, block executes
+* If condition is `false`, block is skipped
+
+---
+
+## 2️⃣ `if – else` Statement
+
+### Syntax
+
+```dart
+if (condition) {
+  // true block
+} else {
+  // false block
+}
+```
+
+### Example
+
+```dart
+void main() {
+  int marks = 35;
+
+  if (marks >= 40) {
+    print("Pass");
+  } else {
+    print("Fail");
+  }
+}
+```
+
+### Explanation
+
+* Either `if` block OR `else` block runs
+* Both can never execute together
+
+---
+
+## 3️⃣ `if – else if – else` Ladder
+
+Used when **multiple conditions** are involved.
+
+### Example (Your Code Explained)
+
+```dart
+void main() {
+  var a = 100;
+  var b = 50;
+
+  if (a > 200 && b > 100) {
+    // both conditions must be true
+    print("Block 1");
+  } else if (a < 50) {
+    print("Block 2");
+  } else if (a > 80) {
+    print("Block 3");
+  } else if (a == 77) {
+    print("Block 4");
+  } else {
+    print("Block ELSE");
+  }
+}
+```
+
+### Step-by-step Execution
+
+* `a > 200 && b > 100` → false
+* `a < 50` → false
+* `a > 80` → true ✅
+* Execution stops here
+* Output:
+
+```
+Block 3
+```
+
+### Important Rule
+
+> Only **one block** executes in `if–else if–else`
+
+---
+
+## 4️⃣ Logical Operators in Conditional Programming
+
+### `&&` (AND Operator)
+
+* All conditions must be **true**
+* If one is false → result is false
+
+```dart
+if (a > 200 && b < 10) {
+  print('Block 1');
+} else {
+  print('Block 2');
+}
+```
+
+### Explanation
+
+* AND gate logic
+* Used in **login validation**
+* Username AND password must be correct
+
+---
+
+### `||` (OR Operator)
+
+* Any one condition must be **true**
+
+```dart
+if (a > 200 || b < 10) {
+  print('Block 1');
+} else {
+  print('Block 2');
+}
+```
+
+### Explanation
+
+* OR gate logic
+* Used when **multiple options are acceptable**
+
+---
+
+### `!` (NOT Operator)
+
+* Reverses boolean value
+
+```dart
+bool isLogin = false;
+
+if (!isLogin) {
+  print("User not logged in");
+}
+```
+
+---
+
+## 5️⃣ AND vs OR vs IF–ELSE (Difference)
+
+| Feature | AND (`&&`) | OR (`||`) | if–else |
+|------|-----------|-----------|--------|
+| Condition | All true | Any one true | Single check |
+| Use case | Login validation | Optional logic | Decision making |
+| Result | Strict | Flexible | Flow control |
+
+---
+
+## 6️⃣ Nested `if` Statement
+
+When one condition depends on another.
+
+### Example (Your Code Explained)
+
+```dart
+void main() {
+  var a = 100;
+  var b = 15;
+
+  if (a > 200) {
+    if (b > 100) {
+      print("Both conditions true");
+    }
+  }
+}
+```
+
+### Explanation
+
+* Second `if` runs **only if first is true**
+* Used when conditions are **hierarchical**
+
+---
+
+## When Do We Use Conditional Programming?
+
+* Navigation between screens
+* Login & authentication
+* Dialog box decisions
+* Feature enable/disable
+* API response handling
+
+---
+
+## Interview Tips & Tricks (Fresher Friendly)
+
+### Common Interview Questions
+
+**Q1. What is conditional programming?**
+Conditional programming controls the execution flow based on boolean conditions.
+
+**Q2. Difference between `&&` and `||`?**
+`&&` needs all conditions true, `||` needs any one true.
+
+**Q3. What does an `if` condition return?**
+It always returns a boolean value (`true` or `false`).
+
+**Q4. Which block executes in `if–else if–else`?**
+Only the **first true condition block**.
+
+**Q5. Where is nested if used?**
+When one condition depends on another.
+
+---
+
+## Interview One-Liners
+
+* Conditional statements control program flow
+* `if` checks conditions that return boolean values
+* `&&` represents AND gate logic
+* `||` represents OR gate logic
+* Nested `if` is used for dependent conditions
+
+---
+
+## Final Summary
+
+Conditional programming is the backbone of **decision-making logic** in Dart and Flutter.
+It is heavily used in **navigation, authentication, validations, dialogs, and API handling**.
+
+Mastering `if–else`, logical operators, and condition flow is **mandatory for Flutter interviews**.
