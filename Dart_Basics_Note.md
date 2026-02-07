@@ -1410,4 +1410,204 @@ In Dart, Maps are dynamic key–value collections used mainly for JSON handling,
 
 A Map in Dart is a dynamic key-value collection used heavily for JSON handling and API data management.
 
+# FINAL vs CONST in Dart – Explanation (Based on Your Notes)
+
+This document explains the **difference between `final` and `const` in Dart**, how they behave at compile time and runtime, and clarifies the points you mentioned in your code and comments.
+
+---
+
+## Core Difference: `final` vs `const`
+
+### `final`
+- Value is assigned **once**
+- Value is decided at **runtime**
+- Variable **cannot be reassigned**
+- Object **can be mutable** (can change internal data)
+
+### `const`
+- Value is assigned **once**
+- Value must be known at **compile time**
+- Variable **cannot be reassigned**
+- Object is **completely immutable**
+
+---
+
+## Understanding Your Code Step by Step
+
+### 1️⃣ Using `final`
+
+```dart
+final name = "Raman";
+name = "Ramanujan";
+````
+
+❌ **Error Explanation**
+
+* `final` means the variable can be assigned **only once**
+* Reassigning it again is not allowed
+
+✅ Correct understanding:
+
+> `final` variables cannot be reassigned once initialized
+
+---
+
+### 2️⃣ Declaring `final` Without Initialization
+
+```dart
+final String name;
+name = "Ramanujan";
+```
+
+✅ **This is allowed**
+
+* `final` variables can be declared first
+* They must be initialized **before use**
+* Assignment can happen later, but only once
+
+---
+
+### 3️⃣ `final` with `var` (Not Allowed)
+
+```dart
+final String name;
+```
+
+✅ Correct
+
+```dart
+final var name; // ❌ Not allowed
+```
+
+Explanation:
+
+* `final` already handles immutability
+* `var` is for type inference
+* Using both together makes no sense
+
+---
+
+### 4️⃣ `final dynamic` Confusion
+
+```dart
+final dynamic name;
+```
+
+Explanation of your point:
+
+* `dynamic` allows changing **type**
+* `final` allows assignment **only once**
+* So using `dynamic` with `final` is **logically useless**
+* You can assign only once anyway
+
+✅ Correct understanding:
+
+> `dynamic` loses its benefit when combined with `final`
+
+---
+
+### 5️⃣ Using `const`
+
+```dart
+const name = "Raman";
+name = "Ajay";
+```
+
+❌ Error Explanation:
+
+* `const` variables must be initialized **immediately**
+* They are **compile-time constants**
+* Reassignment is never allowed
+
+Correct rule:
+
+> When using `const`, initialization is mandatory at declaration
+
+---
+
+### 6️⃣ `const` Cannot Change at Runtime
+
+```dart
+const name = "Raman";
+```
+
+* Value is fixed before program runs
+* Cannot depend on runtime data (user input, API, DateTime, etc.)
+
+---
+
+### 7️⃣ `final` with List (Important Concept)
+
+```dart
+final names = ["Raman", "Aman", "Ramanujan", "Rajiv"];
+```
+
+Key points:
+
+* `names` reference cannot be reassigned
+* **But list content can be modified**
+
+```dart
+names.add("Priya"); // ✅ Allowed
+```
+
+❌ Not allowed:
+
+```dart
+names = ["Pooja", "Prem"];
+```
+
+Explanation:
+
+* `final` locks the **reference**, not the object
+* You can modify elements
+* You cannot point it to a new list
+
+---
+
+### 8️⃣ Trying to Change Data Type
+
+```dart
+names = [1, 2, 3, 4];
+```
+
+❌ Error:
+
+* `names` was inferred as `List<String>`
+* Dart is strongly typed
+* You cannot change the type
+
+---
+
+## Quick Comparison Table
+
+| Feature           | final          | const             |
+| ----------------- | -------------- | ----------------- |
+| Assignment        | Once           | Once              |
+| Time              | Runtime        | Compile time      |
+| Initialization    | Can be later   | Must be immediate |
+| Reassign variable | ❌              | ❌              |
+| Modify object     | ✅              | ❌              |
+| Used for          | Runtime values | Fixed constants   |
+
+---
+
+## Interview-Ready One-Liners
+
+* `final` variables are initialized once and decided at runtime
+* `const` variables are compile-time constants
+* `final` allows object mutation, `const` does not
+* Use `final` for API data, user input, runtime values
+* Use `const` for fixed values like colors, dimensions, literals
+
+---
+
+## Simple Rule to Remember
+
+> **If the value comes at runtime → use `final`**
+> **If the value is fixed forever → use `const`**
+
+---
+
+
 
