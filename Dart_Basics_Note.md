@@ -1110,3 +1110,304 @@ MyClass() {
 • Non-void functions must return a value
 • Code after `return` is unreachable
 • Constructor is a special function used to initialize objects
+
+--- 
+# Dart List (Collection) – Basics to Operations
+
+## What is a Dart List?
+
+Dart List is a **collection of multiple data**.  
+It is similar to an **array**, which is an **ordered collection of objects**.
+
+### Key Points
+- Ordered collection
+- Uses **index** (starts from 0)
+- Stores **elements**
+- Declared using **square brackets `[ ]`**
+- Elements are separated using **comma `,`**
+
+---
+
+## Syntax
+
+```dart
+var listName = [element1, element2, element3];
+````
+
+* `[]` → defines a list
+* `,` → separates elements
+* `index` → position of element
+* `element` → actual stored value
+
+---
+
+## Dart List Example Code
+
+```dart
+/*dart list -> collection of multiple data.
+similar to an array which is the ordered collection of the objects.
+syntax declaring:?  role of [] and ,
+index, element 
+
+*/
+//import 'package:flutter/cupertino.dart'; 
+void main() {
+    var listNo = [10, 20, 30, 40];
+    listNo.add(88);
+    
+    //blank list
+    var names = [];
+    names.add("Meera");
+    names.add("Arjun");
+    names.add("Dhruv");
+    print("$names");
+    print("listNo");
+     //update
+    //names[0] = "Mira";
+    //names.addAll(listNames);
+    
+    // diff add and insert
+    //insert //use for particular index
+    //names.insert(5,100);
+    //names.insertAll(6, listNo);
+    
+    //replace 
+    listNo.replaceRange(0, 3, [1, 2, 3]);
+    print("listNo");
+    
+    //remove
+    listNo.remove(40);
+    //remove add
+    listNo.removeAt(1);
+    listNo.removeAt(1);
+    
+    listNo.removeRange(0, 5);
+    //operation you must know
+      print("Length: ${listNo.length}");
+      print("Reverse: ${listNo.reversed}");
+      print("First: ${listNo.first}");
+      print("Last: ${listNo.last}");
+      print("Is Empty: ${listNo.isEmpty}");
+      print("Is Not Empty: ${listNo.isNotEmpty}");
+      print("Element At 2nd index: ${listNo.elementAt(2)}");
+    
+  print("$names");
+}
+```
+
+---
+
+## Important List Operations You Must Know (Interview Focus)
+
+* `add()` → adds element at the end
+* `insert()` → adds element at a specific index
+* `replaceRange()` → replaces multiple elements
+* `remove()` → removes specific value
+* `removeAt()` → removes element by index
+* `removeRange()` → removes multiple elements
+
+---
+
+## Common Properties
+
+* `length` → number of elements
+* `reversed` → reverse order
+* `first` → first element
+* `last` → last element
+* `isEmpty` → checks if list is empty
+* `isNotEmpty` → checks if list has data
+* `elementAt(index)` → element at given index
+
+---
+
+## Interview One-Liner
+
+A Dart List is an ordered collection of objects accessed using index values and supports dynamic operations like add, remove, and replace.
+
+
+# Maps and Hash Maps in Dart
+
+## Maps in Dart
+
+• In Dart programming, Maps are dictionary-like data types that exist in key-value form (known as lock-key).  
+• There is no restriction on the type of data that goes in a map data type.  
+• Maps are very flexible and can mutate their size based on the requirements.  
+• It is important to note that all locks (keys) need to be unique in a map data type.  
+
+### Syntax
+
+```
+
+var map_name = {key1: value1, key2: value2, ...};
+
+````
+## Explanation of the Given Dart Map Code
+
+This Dart program demonstrates how **Maps** work in Dart, how to create them, update values, perform common operations, and why they are important for real-world use cases like JSON and APIs.
+
+---
+
+### 1️⃣ Creating a Map Using Literal Syntax
+
+```dart
+var map_name = {
+  'Key1':'Value1',
+  'Key2':2,
+  'Key3':3.0,
+  'Key4':false,
+};
+````
+
+* A **Map** stores data in **key–value pairs**
+* Keys can be `String`, `int`, etc.
+* Values can be of **any data type** (`String`, `int`, `double`, `bool`)
+* Curly braces `{}` are used to define a map
+* Keys must be **unique**
+
+---
+
+### 2️⃣ Updating (Overriding) a Value in Map
+
+```dart
+map_name['Key1'] = 'Ram';
+print(map_name['Key1']);
+```
+
+* Accessing a map value is done using `[]` with the key
+* Assigning a new value to an existing key **overrides** the old value
+* Output will be:
+
+```
+Ram
+```
+
+---
+
+### 3️⃣ Re-declaring a Map
+
+```dart
+var map_name = {
+  'Name':'Value1',
+  'YOE':2,
+  'Avg.Rating':3.0,
+  'VEG':false,
+};
+```
+
+* Here, `map_name` is **re-declared**
+* The previous map is replaced by a new one
+* This is allowed inside the same scope only if redeclaration rules permit
+
+---
+
+### 4️⃣ Creating an Empty Map and Adding Values Dynamically
+
+```dart
+var mapName = {}; //use literal
+mapName['Name'] = "Ramanujan";
+mapName['YOE'] = "9";
+```
+
+* An empty map is created first
+* Key–value pairs are added later
+* This approach is commonly used when data is added dynamically (like API responses)
+
+---
+
+### 5️⃣ Common Map Operations
+
+```dart
+print(mapName.isNotEmpty);
+print(mapName.isEmpty);
+print(mapName.length);
+print(mapName.keys);
+print(mapName.values);
+print(mapName.containsKey('Name'));
+print(mapName.containsValue(false));
+print(mapName.remove('CanLocateTo0ffice'));
+print(mapName);
+```
+
+Explanation of each operation:
+
+* `isNotEmpty` → checks if map has data
+* `isEmpty` → checks if map is empty
+* `length` → number of key–value pairs
+* `keys` → returns all keys
+* `values` → returns all values
+* `containsKey()` → checks if a key exists
+* `containsValue()` → checks if a value exists
+* `remove()` → removes a key and returns its value
+* Printing the map shows the updated content
+
+---
+
+### 6️⃣ Updating a Key in Map Again
+
+```dart
+map_name['Name'] = 'Raman';
+print(map_name);
+```
+
+* Updates the value of existing key `'Name'`
+* Demonstrates mutability of Dart Maps
+
+---
+
+### 7️⃣ Maps and JSON / APIs
+
+```dart
+// json use for dynamic.
+// when u use json. API formation large. Role of map is important
+```
+
+* Maps are the **foundation of JSON**
+* API responses are usually converted into `Map<String, dynamic>`
+* Flutter heavily relies on Maps for backend communication
+
+---
+
+### 8️⃣ Fetching Values from Map
+
+```dart
+print(map_name['Key2']);
+print(map_name['key7']); //case sensitive
+```
+
+* Values are fetched using `map[key]`
+* Dart Maps are **case-sensitive**
+* If a key does not exist, output will be `null`
+
+---
+
+## Key Takeaways
+
+* Maps store data in **key–value format**
+* Keys must be **unique**
+* Maps are **mutable** (can change size and values)
+* Used extensively for **JSON, APIs, and dynamic data**
+* Access values using `[]`
+* Maps are **case-sensitive**
+
+---
+
+## Interview One-Liner
+
+In Dart, Maps are dynamic key–value collections used mainly for JSON handling, API data, and structured data storage.
+
+
+## Important Notes
+
+* Keys in a map are **unique**
+* Values can be of **any data type**
+* Maps are widely used in **JSON** and **API data handling**
+* Access values using **square brackets `[key]`**
+* Maps are **case-sensitive**
+
+---
+
+## Interview One-Liner
+
+A Map in Dart is a dynamic key-value collection used heavily for JSON handling and API data management.
+
+
