@@ -1800,16 +1800,22 @@ if (!isLogin) {
   print("User not logged in");
 }
 ```
-
 ---
 
 ## 5️⃣ AND vs OR vs IF–ELSE (Difference)
 
-| Feature | AND (`&&`) | OR (`||`) | if–else |
-|------|-----------|-----------|--------|
-| Condition | All true | Any one true | Single check |
-| Use case | Login validation | Optional logic | Decision making |
-| Result | Strict | Flexible | Flow control |
+| Feature     | AND (`&&`)            | OR (`||`)              | if–else              |
+|------------|------------------------|-------------------------|----------------------|
+| Condition  | All conditions true    | Any one condition true | Single condition     |
+| Use case   | Login validation       | Optional logic         | Decision making      |
+| Result     | Strict checking        | Flexible checking      | Flow control         |
+
+
+### Quick interview tip
+
+* **AND (`&&`)** is used when *everything must be correct* (username **and** password).
+* **OR (`||`)** is used when *any one condition is enough* (email **or** phone login).
+* **if–else** controls *which path your program follows*.
 
 ---
 
