@@ -34,6 +34,7 @@ import 'dart:io';
 ```
 
 • Imports input/output library
+
 • Required for user input (`stdin`) and output (`stdout`)
 
 ---
@@ -43,6 +44,7 @@ void main() {
 ```
 
 • `main()` is the starting point
+
 • `void` means it returns nothing
 
 ---
@@ -60,6 +62,7 @@ stdout.write('Enter your Name: ');
 ```
 
 • Prints text **without** moving to next line
+
 • Used for user prompts
 
 ---
@@ -69,6 +72,7 @@ var name = stdin.readLineSync();
 ```
 
 • Reads user input from keyboard
+
 • Stored in variable `name`
 
 ---
@@ -78,6 +82,7 @@ print('Welcome, $name');
 ```
 
 • `$name` is string interpolation
+
 • Prints dynamic value inside string
 
 ---
