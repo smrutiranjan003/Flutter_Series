@@ -4,9 +4,6 @@ This file explains core Dart basics with simple definitions, code examples, and 
 
 ---
 
-# Dart Basics – First Program, Class & Object, Variables & Data Types
----
-
 ## 1️⃣ Create First Program in Dart
 
 ### Definition
