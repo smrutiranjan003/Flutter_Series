@@ -1,43 +1,79 @@
-# Dart Basics – Beginner to Interview Ready
+# 🧱 Dart Basics – Beginner to Interview Ready
+
+This file explains core Dart basics with simple definitions, code examples, and step-by-step explanations.
 
 ---
 
-## 1️⃣ First Program in Dart
+# Dart Basics – First Program, Class & Object, Variables & Data Types
+---
+
+## 1️⃣ Create First Program in Dart
 
 ### Definition
-A Dart program always starts from the `main()` function.  
-`main()` is the entry point where execution begins.
+A Dart program always starts execution from the main() function.  
+It is the entry point of any Dart application.
 
 ---
 
-### Code: First Dart Program
+### Example Code
 ```dart
+import 'dart:io';
+
 void main() {
   print('Welcome to Dart!');
+  stdout.write('Enter your Name: ');
+  var name = stdin.readLineSync();
+  print('Welcome, $name');
 }
-````
+```
+---
+
+Explanation (Line by Line)
+
+import 'dart:io';
+
+• Imports input/output library
+• Required for user input (stdin) and output (stdout)
+
+---
+void main() {
+
+•`main()` is the starting point
+• `void` means it returns nothing
 
 ---
 
-### Explanation
-
-* `void` → means the function returns nothing
-* `main()` → entry point of Dart program
-* `print()` → prints output to console
+• Prints output with a new line
 
 ---
 
-### Output
+stdout.write('Enter your Name: ');
+
+• Prints text without moving to next line
+• Used for user prompts
+
+---
+```dart
+
+var name = stdin.readLineSync();
 
 ```
-Welcome to Dart!
-```
+
+• Reads user input from keyboard
+• Stored in variable name
+
+---
+
+print('Welcome, $name');
+
+• $name is string interpolation
+• Prints dynamic value inside string
 
 ---
 
 ### Interview Tip
 
-Every Dart application starts executing from the `main()` function.
+Dart program execution always begins from `main()`.
 
 ---
 
