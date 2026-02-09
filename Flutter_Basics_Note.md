@@ -297,3 +297,329 @@ Image.asset(
 
 ---
 
+# 📘 Flutter Basics – Layouts, InkWell & Scroll Views
+
+This file covers Flutter layout fundamentals, touch handling using InkWell, and scrollable widgets with real-world explanations and examples.
+
+---
+
+## 1️⃣ Rows & Columns in Flutter
+
+### Definition
+
+• One of the most common layout patterns in Flutter is arranging widgets **vertically or horizontally**  
+
+• **Row** → arranges widgets **horizontally**  
+
+• **Column** → arranges widgets **vertically**
+
+---
+
+### Row Widget (Horizontal Views)
+
+```dart
+Row(
+  children: [
+    Icon(Icons.star),
+    Text("Rating"),
+    Icon(Icons.favorite),
+  ],
+)
+````
+
+---
+
+### Column Widget (Vertical Alignment Views)
+
+```dart
+Column(
+  children: [
+    Text("Title"),
+    Text("Description"),
+    ElevatedButton(onPressed: () {}, child: Text("Click")),
+  ],
+)
+```
+
+---
+
+## 🔹 Main Axis & Cross Axis
+
+### Axis Meaning
+
+| Widget | Main Axis  | Cross Axis |
+| ------ | ---------- | ---------- |
+| Row    | Horizontal | Vertical   |
+| Column | Vertical   | Horizontal |
+
+---
+
+### MainAxisAlignment Types
+
+```dart
+Column(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    Text("One"),
+    Text("Two"),
+    Text("Three"),
+  ],
+)
+```
+
+**Types**
+
+• start
+
+• end
+
+• center
+
+• spaceBetween
+
+• spaceAround
+
+• spaceEvenly
+
+---
+
+### CrossAxisAlignment Types
+
+```dart
+Row(
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: [
+    Text("Left"),
+    Text("Right"),
+  ],
+)
+```
+
+**Types**
+
+• start
+
+• end
+
+• center
+
+• stretch
+
+---
+
+### Real UI Example (Pavlova Layout)
+
+```dart
+Column(
+  children: [
+    Image.asset('assets/images/pavlova.jpg'),
+    Text("Strawberry Pavlova",
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+    Text(
+      "Pavlova is a meringue based dessert named after the Russian ballerina Anna Pavlova.",
+      textAlign: TextAlign.center,
+    ),
+    Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(Icons.star, color: Colors.green),
+        Text("170 Reviews"),
+      ],
+    ),
+    Text("COOK"),
+  ],
+)
+```
+
+---
+
+### Interview Tip
+
+> Row and Column help build responsive layouts using main axis and cross axis alignment.
+
+---
+
+## 2️⃣ InkWell Widget in Flutter
+
+### Definition
+
+• InkWell is a **Material widget** in Flutter
+
+• It responds to **touch actions**
+
+• Provides **ripple effect** on interaction
+
+---
+
+### Why InkWell is Important?
+
+• Makes non-button widgets clickable
+
+• Adds user interaction feedback
+
+• Used when GestureDetector does not give visual effect
+
+---
+
+### InkWell Supported Gestures
+
+• onTap
+
+• onDoubleTap
+
+• onLongPress
+
+• onTapDown
+
+---
+
+### InkWell Example
+
+```dart
+InkWell(
+  onTap: () {
+    print("Tapped");
+  },
+  onLongPress: () {
+    print("Long Pressed");
+  },
+  onDoubleTap: () {
+    print("Double Tapped");
+  },
+  child: Container(
+    padding: EdgeInsets.all(16),
+    color: Colors.blue,
+    child: Text(
+      "Tap Me",
+      style: TextStyle(color: Colors.white),
+    ),
+  ),
+)
+```
+
+---
+
+### Interview Tip
+
+> InkWell works only inside Material widgets to show ripple effect.
+
+---
+
+## 3️⃣ Scroll View Widgets in Flutter
+
+### Why Scroll Widgets are Needed?
+
+• Screen size is limited
+
+• Content may overflow
+
+• To avoid **RenderFlex overflow error**
+
+---
+
+## 🔹 SingleChildScrollView
+
+• Scrolls a **single child**
+
+• Used when content size is dynamic
+
+```dart
+SingleChildScrollView(
+  child: Column(
+    children: [
+      Text("Item 1"),
+      Text("Item 2"),
+      Text("Item 3"),
+    ],
+  ),
+)
+```
+
+---
+
+## 🔹 Vertical Scroll (Default)
+
+```dart
+ListView(
+  children: [
+    Text("Item 1"),
+    Text("Item 2"),
+    Text("Item 3"),
+  ],
+)
+```
+
+---
+
+## 🔹 Horizontal Scroll
+
+```dart
+SingleChildScrollView(
+  scrollDirection: Axis.horizontal,
+  child: Row(
+    children: [
+      Container(width: 100, color: Colors.red),
+      Container(width: 100, color: Colors.green),
+    ],
+  ),
+)
+```
+
+---
+
+## 🔹 Common Scroll Widgets
+
+• SingleChildScrollView
+
+• ListView
+
+• GridView
+
+• PageView
+
+---
+
+### RenderFlex Overflow Error (Bottom)
+
+❌ Error occurs when:
+
+• Column height exceeds screen
+
+• No scroll widget used
+
+✅ Fix:
+
+• Wrap Column with SingleChildScrollView
+
+• Use Expanded / Flexible
+
+• Use ListView instead of Column
+
+---
+
+### Interview Tip
+
+> RenderFlex overflow occurs due to unbounded height or width in layouts.
+
+---
+
+## 🔑 Interview One-Liners
+
+• Row aligns widgets horizontally
+
+• Column aligns widgets vertically
+
+• Main axis controls layout direction
+
+• Cross axis controls opposite alignment
+
+• InkWell adds ripple touch feedback
+
+• Scroll widgets prevent overflow errors
+
+• SingleChildScrollView handles large content
+
+---
+
+
+---
