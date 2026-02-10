@@ -953,3 +953,474 @@ By recycling widgets using lazy loading.
 • Prevents overflow and memory issues
 
 ---
+
+# 📘 Flutter Basics – Understanding main.dart (From Scratch)
+
+This document explains:
+
+• What `main.dart` is  
+
+• Why it is required  
+
+• Core Flutter concepts (build, widgets, polymorphism)  
+
+• Full line-by-line explanation of a basic Flutter app  
+
+• What breaks if something is removed  
+
+---
+
+## 1️⃣ What is `main.dart` in Flutter?
+
+### Definition
+
+`main.dart` is the **entry point** of every Flutter application.
+
+• Execution of the app starts from `main()`  
+
+• Flutter looks for `main()` automatically  
+
+• Without `main.dart`, the app cannot run  
+
+---
+
+### Why is it called main.dart?
+
+• Dart follows the same rule as C / Java  
+
+• Every Dart program must start with `main()`  
+
+• Flutter apps are Dart apps  
+
+---
+
+## 2️⃣ What Does `main.dart` Contain?
+
+Usually, it contains:
+
+• Import statements  
+
+• `main()` function  
+
+• `runApp()`  
+
+• Root widget (Stateless or Stateful)  
+
+• App structure (MaterialApp / CupertinoApp)  
+
+---
+
+## 3️⃣ Import Statements
+
+```dart
+import 'package:flutter/material.dart';
+````
+
+### What this line does
+
+• Imports **Material Design widgets**
+
+• Gives access to:
+
+* Scaffold
+
+* AppBar
+
+* Text
+
+* Button
+
+* ThemeData
+
+### What if you remove this?
+
+❌ Compiler error
+
+❌ Flutter will not recognize Material widgets
+
+---
+
+```dart
+// import 'package:flutter/cupertino.dart';
+```
+
+### Why this is commented?
+
+• Cupertino is used for iOS-style UI
+
+• Not required if you use Material widgets
+
+• Uncomment only when needed
+
+---
+
+## 4️⃣ main() Function
+
+```dart
+void main() {
+  runApp(FlutterApp());
+}
+```
+
+### Line-by-Line
+
+#### `void main()`
+
+• Entry point of the app
+
+• Execution starts here
+
+• Must exist
+
+❌ Without this → app will not start
+
+---
+
+#### `runApp(FlutterApp());`
+
+• Tells Flutter to draw something on the screen
+
+• Accepts a **Widget**
+
+• `FlutterApp` is the root widget
+
+❌ Without `runApp()` → blank screen
+
+---
+
+## 5️⃣ What is runApp?
+
+• Attaches widget tree to the screen
+
+• Initializes rendering engine
+
+• Starts widget lifecycle
+
+---
+
+## 6️⃣ StatelessWidget vs StatefulWidget
+
+### StatelessWidget
+
+• UI does NOT change
+
+• No internal state
+
+• Faster
+
+• Used for static screens
+
+---
+
+### StatefulWidget
+
+• UI can change
+
+• Has state
+
+• Used for login, counters, forms
+
+---
+
+## 7️⃣ Root Widget – FlutterApp
+
+```dart
+class FlutterApp extends StatelessWidget {
+```
+
+### Meaning
+
+• Creating a custom widget
+
+• Inherits from `StatelessWidget`
+
+• App UI is static
+
+❌ If you want changing UI → use StatefulWidget
+
+---
+
+## 8️⃣ Method Overriding & Runtime Polymorphism
+
+```dart
+@override
+Widget build(BuildContext context) {
+```
+
+### What is happening here?
+
+• `build()` already exists in parent class
+
+• We override it
+
+• This is **runtime polymorphism**
+
+---
+
+### Why `@override`?
+
+• Helps compiler verify method signature
+
+• Prevents mistakes
+
+• Optional but recommended
+
+---
+
+## 9️⃣ build() Function
+
+### What is build()?
+
+• Returns UI
+
+• Called every time UI needs redraw
+
+• Core of every widget
+
+❌ Without build() → widget is invalid
+
+---
+
+## 🔁 Method Overloading vs Overriding (Important)
+
+### Method Overloading
+
+❌ Dart does NOT support method overloading
+
+---
+
+### Method Overriding (Used in Flutter)
+
+✅ Same method name
+
+✅ Same parameters
+
+✅ Different implementation
+
+Used in `build()`
+
+---
+
+## 1️⃣0️⃣ MaterialApp Widget
+
+```dart
+return MaterialApp(
+```
+
+### Purpose
+
+• Root of Material Design app
+
+• Handles:
+
+* Theme
+
+* Routing
+
+* Navigation
+
+* App title
+
+---
+
+```dart
+title: "FlutterApp",
+```
+
+• App title
+
+• Used by OS (task switcher)
+
+---
+
+```dart
+// debugShowCheckedModeBanner: false,
+```
+
+• Removes debug banner
+
+• Commented = banner visible
+
+---
+
+```dart
+theme: ThemeData(
+  primarySwatch: Colors.blue
+),
+```
+
+• Defines app theme
+
+• Used globally
+
+---
+
+```dart
+home: DashBoardScreen(),
+```
+
+• First screen of the app
+
+• Entry UI
+
+❌ Without home → blank screen
+
+---
+
+## 1️⃣1️⃣ Dashboard Screen Widget
+
+```dart
+class DashBoardScreen extends StatelessWidget {
+```
+
+• Another custom widget
+
+• Screen UI
+
+• Stateless
+
+---
+
+## 1️⃣2️⃣ Scaffold Widget
+
+```dart
+return Scaffold(
+```
+
+### Why Scaffold?
+
+• Provides basic screen layout
+
+• Includes:
+
+* AppBar
+
+* Body
+
+* FloatingActionButton
+
+* Drawer
+
+❌ Without Scaffold → no Material layout
+
+---
+
+## 1️⃣3️⃣ AppBar
+
+```dart
+appBar: AppBar(
+  title: Text("Dashboard"),
+),
+```
+
+• Top navigation bar
+
+• Title displayed
+
+---
+
+## 1️⃣4️⃣ Body Section
+
+```dart
+body: Container(
+  color: Colors.blue.shade50,
+),
+```
+
+### What is Container?
+
+• Box model widget
+
+• Can apply:
+
+* Color
+
+* Padding
+
+* Margin
+
+* Decoration
+
+---
+
+## 1️⃣5️⃣ Widget Tree Flow (Execution Order)
+
+1. `main()` runs
+
+2. `runApp()` called
+
+3. `FlutterApp` widget created
+
+4. `build()` of FlutterApp called
+
+5. `MaterialApp` built
+
+6. `DashBoardScreen` loaded
+
+7. `build()` of DashBoardScreen called
+
+8. UI rendered
+
+---
+
+## 1️⃣6️⃣ What If I Delete Everything and Start Fresh?
+
+Minimum required Flutter app:
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text("Hello Flutter"),
+        ),
+      ),
+    ),
+  );
+}
+```
+
+---
+
+## 🎯 Interview Questions
+
+**Q1. What is main.dart?**
+
+Entry point of Flutter app.
+
+**Q2. What is runApp?**
+
+Starts rendering the widget tree.
+
+**Q3. What is build()?**
+
+Returns UI of a widget.
+
+**Q4. Stateless vs Stateful?**
+
+Stateless = no UI change
+
+Stateful = dynamic UI
+
+**Q5. Does Dart support method overloading?**
+
+No. Only overriding.
+
+---
+
+## 🧠 Final Summary
+
+• `main.dart` is the heart of Flutter
+
+• Everything starts from `main()`
+
+• Widgets build UI using `build()`
+
+• Flutter uses runtime polymorphism
+
+• Widget tree drives the entire app
+
+---
