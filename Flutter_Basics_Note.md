@@ -1911,3 +1911,363 @@ at the same time.
 • BlurRadius controls shadow softness
 
 ---
+
+# 📘 Flutter Basics – Expanded, Padding vs Margin, and ListTile
+
+This document explains:
+
+1️⃣ What is Expanded widget? 
+
+2️⃣ Padding vs Margin (All vs Only)  
+
+3️⃣ What is ListTile and how to use it inside ListView.builder  
+  
+   - Leading  
+   
+   - Title  
+   
+   - Subtitle  
+   
+   - Trailing  
+   
+   - 3 types with examples  
+
+---
+
+# 1️⃣ Expanded Widget in Flutter
+
+## 🔹 What is Expanded?
+
+Expanded is a widget used inside:
+
+- Row
+
+- Column
+
+- Flex
+
+It tells a child to take available remaining space.
+
+---
+
+## 🔹 Why Do We Need Expanded?
+
+Without Expanded:
+
+Children take only required space.
+
+With Expanded:
+
+Children share remaining space.
+
+---
+
+## 🔹 Basic Example Without Expanded
+
+```dart
+Row(
+  children: [
+    Container(width: 100, height: 100, color: Colors.red),
+    Container(width: 100, height: 100, color: Colors.blue),
+  ],
+)
+````
+
+Both containers use fixed width.
+
+---
+
+## 🔹 Example With Expanded
+
+```dart
+Row(
+  children: [
+    Expanded(
+      child: Container(height: 100, color: Colors.red),
+    ),
+    Expanded(
+      child: Container(height: 100, color: Colors.blue),
+    ),
+  ],
+)
+```
+
+Now both containers divide available space equally.
+
+---
+
+## 🔹 Using Flex Property
+
+```dart
+Row(
+  children: [
+    Expanded(
+      flex: 1,
+      child: Container(height: 100, color: Colors.red),
+    ),
+    Expanded(
+      flex: 2,
+      child: Container(height: 100, color: Colors.blue),
+    ),
+  ],
+)
+```
+
+Blue takes double space compared to red.
+
+---
+
+## 🔹 Where to Use Expanded?
+
+✔ Inside Row
+
+✔ Inside Column
+
+✔ Layout alignment
+
+✔ Avoid overflow errors
+
+---
+
+## 🔹 Important Rule
+
+Expanded must be inside:
+
+Row, Column, or Flex.
+
+Otherwise → Error.
+
+---
+
+# 2️⃣ Padding vs Margin in Flutter
+
+Spacing is very important in UI.
+
+---
+
+# 🔵 Padding (Inside Spacing)
+
+Padding adds space inside a widget.
+
+---
+
+## 🔹 Padding All Sides
+
+```dart
+Padding(
+  padding: EdgeInsets.all(16),
+  child: Text("Hello"),
+)
+```
+
+All sides = 16 pixels.
+
+---
+
+## 🔹 Padding Only Specific Sides
+
+```dart
+Padding(
+  padding: EdgeInsets.only(
+    top: 20,
+    left: 10,
+  ),
+  child: Text("Hello"),
+)
+```
+
+Only top and left get spacing.
+
+---
+
+## 🔹 Using Padding in Container
+
+```dart
+Container(
+  padding: EdgeInsets.all(20),
+  color: Colors.blue,
+  child: Text("Hello"),
+)
+```
+
+---
+
+# 🔴 Margin (Outside Spacing)
+
+Margin adds space outside a widget.
+
+---
+
+## 🔹 Margin All Sides
+
+```dart
+Container(
+  margin: EdgeInsets.all(20),
+  color: Colors.blue,
+  child: Text("Hello"),
+)
+```
+
+---
+
+## 🔹 Margin Only
+
+```dart
+Container(
+  margin: EdgeInsets.only(
+    bottom: 20,
+    right: 15,
+  ),
+  color: Colors.blue,
+  child: Text("Hello"),
+)
+```
+
+---
+
+# 🔎 Difference Between Padding and Margin
+
+| Feature            | Padding       | Margin        |
+| ------------------ | ------------- | ------------- |
+| Space location     | Inside        | Outside       |
+| Affects background | Yes           | No            |
+| Used for           | Inner spacing | Outer spacing |
+
+---
+
+# 3️⃣ What is ListTile?
+
+ListTile is a ready-made row layout used inside ListView.
+
+It includes:
+
+* Leading (left widget)
+
+* Title (main text)
+
+* Subtitle (secondary text)
+
+* Trailing (right widget)
+
+---
+
+# 🔹 Basic Structure
+
+```dart
+ListTile(
+  leading: Icon(Icons.person),
+  title: Text("Name"),
+  subtitle: Text("Subtitle"),
+  trailing: Icon(Icons.arrow_forward),
+)
+```
+
+---
+
+# 🔹 How to Use ListTile in ListView.builder
+
+```dart
+ListView.builder(
+  itemCount: 5,
+  itemBuilder: (context, index) {
+    return ListTile(
+      leading: Icon(Icons.person),
+      title: Text("User $index"),
+      subtitle: Text("Subtitle $index"),
+      trailing: Icon(Icons.arrow_forward),
+    );
+  },
+)
+```
+
+---
+
+# 🟢 3 Types of ListTile Examples
+
+---
+
+## 1️⃣ Simple ListTile
+
+```dart
+ListTile(
+  title: Text("Simple Item"),
+)
+```
+
+Only title.
+
+---
+
+## 2️⃣ ListTile with Leading & Trailing
+
+```dart
+ListTile(
+  leading: Icon(Icons.phone),
+  title: Text("Call"),
+  subtitle: Text("Tap to call"),
+  trailing: Icon(Icons.call),
+)
+```
+
+Used in contact apps.
+
+---
+
+## 3️⃣ Clickable ListTile
+
+```dart
+ListTile(
+  leading: Icon(Icons.settings),
+  title: Text("Settings"),
+  trailing: Icon(Icons.arrow_forward),
+  onTap: () {
+    print("Tapped");
+  },
+)
+```
+
+Used for navigation.
+
+---
+
+# 🔎 Role of Each Property
+
+| Property | Position    | Use               |
+| -------- | ----------- | ----------------- |
+| leading  | Left side   | Icon or Image     |
+| title    | Center      | Main text         |
+| subtitle | Below title | Extra information |
+| trailing | Right side  | Icon or Button    |
+| onTap    | Interaction | Click event       |
+
+---
+
+# 🧠 Interview Ready Answers
+
+What is Expanded?
+
+A widget that takes available remaining space inside Row/Column.
+
+Padding vs Margin?
+
+Padding is inner spacing. Margin is outer spacing.
+
+What is ListTile?
+
+A pre-designed row widget used in ListView to show list items.
+
+---
+
+# 🎯 Final Summary
+
+✔ Expanded helps control layout space
+
+✔ Padding adds inside spacing
+
+✔ Margin adds outside spacing
+
+✔ ListTile simplifies list UI
+
+✔ ListView.builder loads items dynamically
+
+---
