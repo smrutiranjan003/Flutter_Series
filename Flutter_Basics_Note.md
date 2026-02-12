@@ -1424,3 +1424,490 @@ No. Only overriding.
 • Widget tree drives the entire app
 
 ---
+
+# 📦 Flutter Basics – Container Decoration (Complete Guide)
+
+## 1️⃣ What is Decoration in Flutter?
+
+Decoration in Flutter is used to **style a widget visually**.
+
+Most commonly, we use:
+
+```dart
+decoration: BoxDecoration()
+```
+
+inside a `Container`.
+
+It allows you to add:
+
+* Background color
+
+* Border
+
+* Border radius
+
+* Box shadow
+
+* Gradient
+
+* Shape (rectangle / circle)
+
+* Image
+
+---
+
+# 🧱 Basic Container Without Decoration
+
+```dart
+Container(
+  width: 200,
+  height: 200,
+  color: Colors.blue,
+)
+```
+
+This only adds background color.
+
+But if you want more styling → use `BoxDecoration`.
+
+---
+
+# 🎨 Basic BoxDecoration Example
+
+```dart
+Container(
+  width: 200,
+  height: 200,
+  decoration: BoxDecoration(
+    color: Colors.blue,
+  ),
+)
+```
+
+When you use `decoration`, you should NOT use `color` directly in Container.
+
+Instead use `color` inside `BoxDecoration`.
+
+---
+
+# 🔵 1. Border Radius (Rounded Corners)
+
+## ✅ BorderRadius.circular()
+
+Rounds all corners equally.
+
+```dart
+decoration: BoxDecoration(
+  color: Colors.blue,
+  borderRadius: BorderRadius.circular(20),
+),
+```
+
+👉 All 4 corners = 20px rounded.
+
+---
+
+## ✅ BorderRadius.all()
+
+Same as circular but uses Radius object.
+
+```dart
+borderRadius: BorderRadius.all(
+  Radius.circular(20),
+),
+```
+
+---
+
+## ✅ BorderRadius.only()
+
+Round specific corners.
+
+```dart
+borderRadius: BorderRadius.only(
+  topLeft: Radius.circular(20),
+  bottomRight: Radius.circular(40),
+),
+```
+
+👉 Only selected corners are rounded.
+
+---
+
+# 🔹 Zero Radius
+
+```dart
+borderRadius: BorderRadius.zero
+```
+
+No rounding at all.
+
+---
+
+# 🟠 2. Border Property
+
+Add border around container.
+
+```dart
+border: Border.all(
+  color: Colors.black,
+  width: 2,
+),
+```
+
+Full example:
+
+```dart
+decoration: BoxDecoration(
+  color: Colors.white,
+  border: Border.all(
+    color: Colors.black,
+    width: 2,
+  ),
+),
+```
+
+---
+
+## Border Only on Specific Sides
+
+```dart
+border: Border(
+  top: BorderSide(color: Colors.red, width: 3),
+  bottom: BorderSide(color: Colors.green, width: 3),
+),
+```
+
+---
+
+# 🌑 3. Box Shadow
+
+Adds shadow effect.
+
+```dart
+boxShadow: [
+  BoxShadow(
+    color: Colors.black.withOpacity(0.5),
+    blurRadius: 10,
+    spreadRadius: 2,
+    offset: Offset(5, 5),
+  ),
+],
+```
+
+### Important Properties:
+
+| Property     | Meaning                  |
+| ------------ | ------------------------ |
+| color        | Shadow color             |
+| blurRadius   | How blurry shadow is     |
+| spreadRadius | How much shadow expands  |
+| offset       | Position of shadow (x,y) |
+
+---
+
+# 🟣 4. Shape Property
+
+## Rectangle (Default)
+
+```dart
+shape: BoxShape.rectangle,
+```
+
+Default shape.
+
+---
+
+## Circle
+
+```dart
+shape: BoxShape.circle,
+```
+
+⚠ When using circle:
+
+* Do NOT use borderRadius.
+
+* Width & height should be equal.
+
+Example:
+
+```dart
+Container(
+  width: 150,
+  height: 150,
+  decoration: BoxDecoration(
+    color: Colors.blue,
+    shape: BoxShape.circle,
+  ),
+)
+```
+
+---
+
+# 🔵 Zero vs Circular vs Elliptical (Flutter Border Radius & Shape)
+
+These terms are mostly used when styling a `Container` using `BoxDecoration`.
+
+---
+
+# 1️⃣ Zero Radius
+
+### 👉 Meaning:
+
+No rounding at all. Corners remain sharp (90°).
+
+### Code:
+
+```dart
+Container(
+  width: 200,
+  height: 100,
+  decoration: BoxDecoration(
+    color: Colors.blue,
+    borderRadius: BorderRadius.zero,
+  ),
+)
+```
+
+### Result:
+
+⬛ A normal rectangle with sharp edges.
+
+### When to use:
+
+* Cards with strict edges
+
+* Clean minimal UI
+
+* Default box style
+
+---
+
+# 2️⃣ Circular Radius
+
+### 👉 Meaning:
+
+All corners are rounded equally using a circular curve.
+
+### Code:
+
+```dart
+Container(
+  width: 200,
+  height: 100,
+  decoration: BoxDecoration(
+    color: Colors.blue,
+    borderRadius: BorderRadius.circular(20),
+  ),
+)
+```
+
+### Result:
+
+Rounded rectangle (soft corners).
+
+### Important:
+
+* `BorderRadius.circular(value)` rounds all corners equally.
+
+* If width == height and radius is high → it looks like a circle.
+
+Example for perfect circle:
+
+```dart
+Container(
+  width: 150,
+  height: 150,
+  decoration: BoxDecoration(
+    color: Colors.blue,
+    shape: BoxShape.circle,
+  ),
+)
+```
+
+---
+
+# 3️⃣ Elliptical
+
+### 👉 Meaning:
+
+Oval shape. Width and height are different but shape is set to circle.
+
+### Code:
+
+```dart
+Container(
+  width: 200,
+  height: 120,
+  decoration: BoxDecoration(
+    color: Colors.blue,
+    shape: BoxShape.circle,
+  ),
+)
+```
+
+### Result:
+
+Oval (ellipse shape)
+
+Why?
+
+Because:
+
+* shape = circle
+
+* width ≠ height
+
+   So Flutter stretches the circle into an ellipse.
+
+---
+
+# 🧠 Quick Comparison Table
+
+| Type       | Corners      | Shape        | Width & Height | Result      |
+| ---------- | ------------ | ------------ | -------------- | ----------- |
+| Zero       | Sharp        | Rectangle    | Any            | Normal box  |
+| Circular   | Rounded      | Rectangle    | Any            | Rounded box |
+| Elliptical | Fully curved | Circle shape | Not equal      | Oval        |
+
+---
+
+# ⚠ Important Difference
+
+• `BorderRadius.circular()` → modifies corners of a rectangle
+
+• `BoxShape.circle` → changes entire shape
+
+You cannot use:
+
+```dart
+borderRadius
+```
+
+with
+
+```dart
+shape: BoxShape.circle
+```
+
+It will give an error.
+
+---
+
+# 🎯 Interview Ready Explanation
+
+Zero → No rounding
+
+Circular → Rounded rectangle
+
+Elliptical → Oval shape created using circle shape with unequal width & height
+
+---
+
+# 🌈 5. Gradient
+
+Instead of color, use gradient.
+
+```dart
+gradient: LinearGradient(
+  colors: [Colors.blue, Colors.purple],
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+),
+```
+
+---
+
+# 🖼 6. Add Image Inside Container
+
+```dart
+decoration: BoxDecoration(
+  image: DecorationImage(
+    image: AssetImage("assets/image.jpg"),
+    fit: BoxFit.cover,
+  ),
+),
+```
+
+---
+
+# 💎 Full Advanced Example
+
+```dart
+Container(
+  width: 250,
+  height: 150,
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [Colors.blue, Colors.purple],
+    ),
+    borderRadius: BorderRadius.circular(20),
+    border: Border.all(
+      color: Colors.black,
+      width: 2,
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.3),
+        blurRadius: 8,
+        spreadRadius: 2,
+        offset: Offset(4, 4),
+      ),
+    ],
+  ),
+)
+```
+
+This includes:
+
+* Gradient
+
+* Border radius
+
+* Border
+
+* Shadow
+
+---
+
+# ⚠ Important Rules
+
+### ❌ Don’t use both:
+
+```dart
+color:
+```
+
+AND
+
+```dart
+decoration:
+```
+
+at the same time.
+
+---
+
+### ❌ Don’t use borderRadius with shape circle.
+
+---
+
+# 🧠 Interview Quick Points
+
+• Decoration is used for styling container
+
+• BoxDecoration provides border, shadow, gradient, shape
+
+• BorderRadius.only() used for specific corner
+
+• BoxShadow gives depth effect
+
+• Shape circle makes container round
+
+• SpreadRadius controls shadow size
+
+• BlurRadius controls shadow softness
+
+---
